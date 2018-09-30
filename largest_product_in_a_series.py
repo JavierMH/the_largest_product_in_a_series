@@ -22,22 +22,36 @@ class LargestProductInASeries():
         print(largestProduct)
         return largestProduct
 
-    def run(self):
+    def _obtain_k_N_and_N_length_by_input(self):
+        len_of_N, K = list(map(
+            int,
+            input(
+                'Enter "N_length" & "K" '
+                'separated by space "N_length K"\n>>>> '
+            ).split()
+        ))
+        N = input('Enter N digit integer"\n>>>> ')
+        return len_of_N, K, N
+
+    def _obtain_T_by_input(self):
         number_of_test_cases = int(input('Enter T\n>>>> '))
         if number_of_test_cases > 100 and number_of_test_cases < 1:
             raise ValueError()
+        return number_of_test_cases
+
+    def run(self):
+        number_of_test_cases = self._obtain_T_by_input()
         the_largest_product_list = []
-        for i in range(number_of_test_cases):
-            len_of_N, K = list(map(
-                int,
-                input(
-                    'Enter "N_length" & "K" separated by space "N_length K"\n>>>> '
-                ).split()
-            ))
-            N = input('Enter N digit integer"\n>>>> ')
+        exit = False
+        while exit is not True:
             the_largest_product_list.append(
-                self.find_the_largest_product(len_of_N, K, N)
+                self.find_the_largest_product(
+                    *self._obtain_k_N_and_N_length_by_input()
+                )
             )
+            number_of_test_cases -= 1
+            if not number_of_test_cases:
+                exit = True
         return the_largest_product_list
 
 
