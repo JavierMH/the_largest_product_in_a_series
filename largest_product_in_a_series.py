@@ -26,6 +26,13 @@ class LargestProductInASeries():
         number_of_test_cases = int(input('Enter T\n>>>> '))
         if number_of_test_cases > 100 and number_of_test_cases < 1:
             raise ValueError()
+        the_largest_product_list = []
+        for i in range(number_of_test_cases):
+            len_of_N, K = list(map(
+                int,
+                input('Enter N & K separated by space "N K"\n>>>> ').split()
+            ))
+        return the_largest_product_list
 
 
 if __name__ == '__main__':
