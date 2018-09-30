@@ -75,6 +75,7 @@ class LargestProductInASeries():
                 except ValueError as ve:
                     print(ve)
                     continue
+                break
             return N_length, K, N
 
     def _constraints_for_number_of_test_cases(self, number_of_test_cases):
@@ -89,8 +90,10 @@ class LargestProductInASeries():
 
     def _obtain_T_by_input(self):
         while True:
-            print('\nPress "ctrl + C" or type "exit" to exit')
-            number_of_test_cases = input('Enter T\n>>>> ')
+            number_of_test_cases = input(
+                '\nPress "ctrl + C" or type "exit" to exit\n\n'
+                'Enter T\n>>>> '
+            )
             if number_of_test_cases == 'exit':
                 sys.exit()
             try:
