@@ -30,8 +30,14 @@ class LargestProductInASeries():
         for i in range(number_of_test_cases):
             len_of_N, K = list(map(
                 int,
-                input('Enter N & K separated by space "N K"\n>>>> ').split()
+                input(
+                    'Enter "N_length" & "K" separated by space "N_length K"\n>>>> '
+                ).split()
             ))
+            N = input('Enter N digit integer"\n>>>> ')
+            the_largest_product_list.append(
+                self.find_the_largest_product(len_of_N, K, N)
+            )
         return the_largest_product_list
 
 
