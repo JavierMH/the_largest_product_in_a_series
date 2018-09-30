@@ -2,15 +2,23 @@
 
 
 class LargestProductInASeries():
-    def find_the_largest_product(self, len_of_N, K, N):
-        if len_of_N != len(N):
+    def _constraints_for_N(self, N, N_length, K):
+        if N_length != len(N):
             raise ValueError(
-                'The number of digits must be iqual to {}'.format(len_of_N)
+                'The number of digits must be iqual to {}'.format(N_length)
             )
-
-        if K > len_of_N:
+        if K > N_length:
             raise ValueError('N must be greater than or equal to K')
 
+    def _constraints_for_K(self, K):
+        if K > 7:
+            raise ValueError('N must be lower than 7')
+        if K < 1:
+            raise ValueError('N must be greater than 1')
+
+    def find_the_largest_product(self, N_length, K, N):
+        self._constraints_for_N(N, N_length, K)
+        self._constraints_for_K(K)
         largestProduct = 0
         for consec_digit in range(len(N) - K):
             product = 1
@@ -23,7 +31,7 @@ class LargestProductInASeries():
         return largestProduct
 
     def _obtain_k_N_and_N_length_by_input(self):
-        len_of_N, K = list(map(
+        N_length, K = list(map(
             int,
             input(
                 'Enter "N_length" & "K" '
@@ -31,12 +39,20 @@ class LargestProductInASeries():
             ).split()
         ))
         N = input('Enter N digit integer"\n>>>> ')
-        return len_of_N, K, N
+        return N_length, K, N
+
+    def _constraints_for_number_of_test_cases(self, number_of_test_cases):
+        if (isinstance(number_of_test_cases, str) and
+                not number_of_test_cases.isdigit()):
+            raise ValueError('Please enter an integer number!')
+        if number_of_test_cases < 1 or number_of_test_cases > 100:
+            raise ValueError(
+                'Please enter an integer number between 1 and 100'
+            )
 
     def _obtain_T_by_input(self):
-        number_of_test_cases = int(input('Enter T\n>>>> '))
-        if number_of_test_cases > 100 and number_of_test_cases < 1:
-            raise ValueError()
+        number_of_test_cases = input('Enter T\n>>>> ')
+        self._constraints_for_number_of_test_cases(number_of_test_cases)
         return number_of_test_cases
 
     def run(self):
