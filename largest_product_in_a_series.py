@@ -22,6 +22,11 @@ class LargestProductInASeries():
         print(largestProduct)
         return largestProduct
 
+    def run(self):
+        number_of_test_cases = int(input('Enter T\n>>>> '))
+        if number_of_test_cases > 100 and number_of_test_cases < 1:
+            raise ValueError()
+
 
 if __name__ == '__main__':
-    result = LargestProductInASeries().find_the_largest_product(10, 5, '3675356291')
+    result = LargestProductInASeries().run()
